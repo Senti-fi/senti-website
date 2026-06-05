@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand */
+  --color-senti-blue: #007BFF;
+  --color-senti-blue-hover: #0066D6;
+  --color-senti-cyan: #00D9FF;
+  --color-senti-navy: #0A1628;
+
+  /* Ink (text) */
+  --color-ink: #0A1628;
+  --color-ink-soft: #1F2937;
+  --color-ink-muted: #475569;
+  --color-ink-faint: #64748B;
+
+  /* Surfaces */
+  --color-surface: #FFFFFF;
+  --color-surface-soft: #F8FAFC;
+  --color-surface-muted: #F1F5F9;
+  /* Canvas — the page/section base. Cards remain bg-surface (white) on top. */
+  --color-canvas: #EAEDF0;
+  /* Soft blue wash — harmonizes with the brand blue; gives sections identity without clashing */
+  --color-surface-tint: #E8EFFB;
+  --color-line: #E2E8F0;
+  --color-line-soft: #EEF2F7;
+
+  /* Type */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-source-serif), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  /* Radii */
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-button: 0.625rem;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FFFFFF;
+  --foreground: #0A1628;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-senti-blue) 18%, transparent);
+  color: var(--color-senti-navy);
+}
+
+/* Subtle dotted ambient grid for hero/section backdrops */
+.bg-grid-dots {
+  background-image: radial-gradient(circle at 1px 1px, rgb(15 23 42 / 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
 }
