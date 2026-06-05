@@ -138,7 +138,7 @@ export function SaveTiers() {
             role="radiogroup"
             aria-label="Choose a savings plan"
             onKeyDown={onKeyDown}
-            className="mt-12 inline-flex max-w-full gap-1 rounded-full border border-line bg-surface p-1 shadow-[0_1px_2px_rgba(10,22,40,0.05)] lg:mt-16"
+            className="mt-12 flex w-full gap-1 rounded-full border border-line bg-surface p-1 shadow-[0_1px_2px_rgba(10,22,40,0.05)] sm:inline-flex sm:w-auto lg:mt-16"
           >
             {TIERS.map((t, i) => {
               const isActive = i === active;
@@ -150,7 +150,7 @@ export function SaveTiers() {
                   aria-checked={isActive}
                   tabIndex={isActive ? 0 : -1}
                   onClick={() => setActive(i)}
-                  className="relative h-11 rounded-full px-4 text-[13px] font-medium outline-offset-2 transition-colors sm:px-6 sm:text-[14px]"
+                  className="relative h-11 flex-1 rounded-full px-2 text-[12px] font-medium outline-offset-2 transition-colors sm:flex-none sm:px-6 sm:text-[14px]"
                 >
                   {isActive && (
                     <motion.span

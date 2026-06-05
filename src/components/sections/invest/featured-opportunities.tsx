@@ -111,7 +111,7 @@ export function FeaturedOpportunities() {
                 }}
               >
                 {/* Asset logo */}
-                <span className="flex h-48 w-48 items-center justify-center overflow-hidden">
+                <span className="flex aspect-square w-full max-w-[176px] items-center justify-center overflow-hidden">
                   <Image
                     src={o.img}
                     alt={o.name}

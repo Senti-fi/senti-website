@@ -164,8 +164,8 @@ function NetworkGraphic() {
           >
             {/* Counter-rotate so the card stays upright while it orbits */}
             <motion.div animate={{ rotate: -360 }} transition={orbit}>
-              <div className="flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2 shadow-[0_12px_30px_-14px_rgba(10,22,40,0.3)]">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-surface">
+              <div className="flex items-center gap-1.5 rounded-xl border border-line bg-surface px-2 py-1.5 shadow-[0_12px_30px_-14px_rgba(10,22,40,0.3)] sm:gap-2 sm:px-3 sm:py-2">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-surface sm:h-12 sm:w-12 sm:rounded-xl">
                   <Image
                     src={n.img}
                     alt={n.label}
@@ -176,11 +176,11 @@ function NetworkGraphic() {
                   />
                 </span>
                 <span className="min-w-0">
-                  <span className="block text-[12px] font-semibold leading-tight text-ink">
+                  <span className="block text-[10px] font-semibold leading-tight text-ink sm:text-[12px]">
                     {n.label}
                   </span>
                   {n.sub && (
-                    <span className="block text-[10px] leading-tight text-ink-faint">
+                    <span className="block text-[9px] leading-tight text-ink-faint sm:text-[10px]">
                       {n.sub}
                     </span>
                   )}
