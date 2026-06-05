@@ -79,7 +79,7 @@ export function Products() {
         width={768}
         height={768}
         priority={false}
-        className="pointer-events-none absolute left-[11%] top-1/2 z-0 hidden w-[640px] max-w-none -translate-y-1/2 rotate-[9deg] opacity-[0.26] lg:block xl:left-[13%] xl:w-[720px]"
+        className="pointer-events-none absolute left-[4%] top-1/2 z-0 hidden w-[640px] max-w-none -translate-y-1/2 rotate-[9deg] opacity-[0.26] lg:block xl:left-[6%] xl:w-[720px]"
       />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">

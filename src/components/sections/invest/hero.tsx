@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion, useTime, useTransform } from "motion/react";
 import { ArrowRight, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { Stagger, StaggerItem, Reveal } from "@/components/motion";
 
@@ -107,7 +107,13 @@ export function InvestHero() {
 }
 
 function NetworkGraphic() {
-  const orbit = { duration: ORBIT_SECONDS, repeat: Infinity, ease: "linear" as const };
+  // One shared clock drives the orbit; the cards counter-rotate by exactly the
+  // negated value, so they always stay upright (no drift between two animations).
+  const time = useTime();
+  const rotate = useTransform(time, [0, ORBIT_SECONDS * 1000], [0, 360], {
+    clamp: false,
+  });
+  const counterRotate = useTransform(rotate, (r) => -r);
 
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[480px]">
@@ -124,38 +130,8 @@ function NetworkGraphic() {
         />
       </div>
 
-      {/* Revolving group: connecting lines + orbiting cards */}
-      <motion.div
-        className="absolute inset-0 z-20"
-        style={{ transformOrigin: "center" }}
-        animate={{ rotate: 360 }}
-        transition={orbit}
-      >
-        <svg viewBox="0 0 400 400" className="absolute inset-0 h-full w-full">
-          {positions.map((p, i) => {
-            const x = p.left * 4;
-            const y = p.top * 4;
-            return (
-              <g key={NODES[i].key}>
-                <line x1={200} y1={200} x2={x} y2={y} stroke="#E2E8F0" strokeWidth={1.5} />
-                <motion.line
-                  x1={200}
-                  y1={200}
-                  x2={x}
-                  y2={y}
-                  stroke={NODES[i].color}
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeDasharray="1 9"
-                  opacity={0.7}
-                  animate={{ strokeDashoffset: [0, -20] }}
-                  transition={{ duration: 1.4, repeat: Infinity, ease: "linear", delay: i * 0.2 }}
-                />
-              </g>
-            );
-          })}
-        </svg>
-
+      {/* Revolving group: orbiting cards */}
+      <motion.div className="absolute inset-0 z-20" style={{ rotate }}>
         {NODES.map((n, i) => (
           <div
             key={n.key}
@@ -163,7 +139,7 @@ function NetworkGraphic() {
             style={{ left: `${positions[i].left}%`, top: `${positions[i].top}%` }}
           >
             {/* Counter-rotate so the card stays upright while it orbits */}
-            <motion.div animate={{ rotate: -360 }} transition={orbit}>
+            <motion.div style={{ rotate: counterRotate }}>
               <div className="flex items-center gap-1.5 rounded-xl border border-line bg-surface px-2 py-1.5 shadow-[0_12px_30px_-14px_rgba(10,22,40,0.3)] sm:gap-2 sm:px-3 sm:py-2">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-surface sm:h-12 sm:w-12 sm:rounded-xl">
                   <Image

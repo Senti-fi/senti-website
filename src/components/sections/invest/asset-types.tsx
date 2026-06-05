@@ -80,14 +80,14 @@ export function AssetTypes() {
                 <div className="mt-3 text-[12px] font-medium uppercase tracking-[0.12em] text-ink-faint">
                   {c.count}
                 </div>
-                <span className="mt-auto flex aspect-square w-full items-center justify-center overflow-hidden">
+                <span className="mt-auto flex w-full justify-center pt-6">
                   <Image
                     src={c.img}
                     alt={c.name}
-                    width={240}
-                    height={240}
+                    width={280}
+                    height={280}
                     unoptimized
-                    className="h-full w-full scale-[1.8] object-contain"
+                    className="h-auto w-full max-w-[280px] object-contain"
                   />
                 </span>
               </Link>
